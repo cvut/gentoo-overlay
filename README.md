@@ -47,6 +47,8 @@ List of ebuilds
    * with improved ebuild and init script
 * **www-apps/gitlabhq** (4.0.0, 6.0.2)
    * with some fixes and enhacements
+* **www-apps/haste-client** (1.0)
+   * [CLI Haste client](https://github.com/jirutka/haste-client) written in Python
 * **www-apps/haste-server** (0.1.0)
 * **www-apps/liferay-portal** (6.1.1)
    * with fixes for OpenJDK
