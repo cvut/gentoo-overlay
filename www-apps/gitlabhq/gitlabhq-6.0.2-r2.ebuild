@@ -235,7 +235,7 @@ pkg_postinst() {
         elog "      su postgres"
         elog "      psql -c \"CREATE ROLE gitlab PASSWORD 'gitlab' \\"
         elog "          NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT LOGIN;\""
-        elog "      createdb -E UTF-8 -O gitlab gitlab_production"
+        elog "      createdb -E UTF-8 -O gitlab gitlabhq_production"
 		elog "  Note: You should change your password to something more random..."
 		elog
 	fi
@@ -320,7 +320,7 @@ pkg_config() {
 		fi
 	done
 
-	if [ ${update} ]; then
+	if [ "${update}" = 'true' ]; then
 		einfo "Migrating database ..."
 		exec_rake db:migrate
 
@@ -337,7 +337,7 @@ pkg_config() {
 	einfo "Precompiling assests ..."
 	exec_rake assets:precompile:all
 	
-	if [ ${update} ]; then
+	if [ "${update}" = 'true' ]; then
 		ewarn
 		ewarn "This configuration script runs only common migration tasks."
 		ewarn "Please read guides on"
