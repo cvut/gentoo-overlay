@@ -8,7 +8,7 @@ MY_PV="${MY_PV/_rc/-RC}"
 MY_PN="sonar"
 MY_P="${MY_PN}-${MY_PV}"
 
-inherit eutils
+inherit eutils user
 
 DESCRIPTION="Sonar is an open platform to manage code quality."
 HOMEPAGE="http://sonarsource.org/"

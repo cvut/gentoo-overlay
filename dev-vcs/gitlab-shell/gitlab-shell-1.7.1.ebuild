@@ -5,7 +5,7 @@ EAPI="5"
 
 USE_RUBY="ruby19 ruby20"
 
-inherit eutils ruby-ng
+inherit eutils ruby-ng user
 
 DESCRIPTION="SSH access and repository management for GitLab"
 HOMEPAGE="https://github.com/gitlabhq/gitlab-shell"

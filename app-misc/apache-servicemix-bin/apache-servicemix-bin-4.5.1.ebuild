@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-inherit eutils
+inherit eutils user
 
 MY_PN=apache-servicemix
 MY_P=${MY_PN}-${PV}

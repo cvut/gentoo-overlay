@@ -10,7 +10,7 @@ EAPI="4"
 #   with libcups.so.2 from the cups package (in case of icedtea-bin at least),
 #   therefore we need icedtea with USE cups for now :( 
 
-inherit eutils java-pkg-2 java-ant-2
+inherit eutils java-pkg-2 java-ant-2 user
 
 MY_PV="${PV}-ce-ga2"
 MY_P="${PN}-src-${MY_PV}"

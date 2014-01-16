@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-inherit eutils subversion java-pkg-2
+inherit eutils subversion java-pkg-2 user
 
 DESCRIPTION="Open source identity management system written in the Java."
 HOMEPAGE="http://openidm.forgerock.org"

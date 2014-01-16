@@ -12,6 +12,7 @@
 # instances (see ${TOMCAT_HOME}) but every application has its own instance
 # (see ${TOMCAT_BASE}).
 
+inherit user
 
 # @ECLASS-VARIABLE: TOMCAT_INSTANCE
 # @DEFAULT: ${PN} or ${PN}-${SLOT}

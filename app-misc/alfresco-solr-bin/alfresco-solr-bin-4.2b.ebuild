@@ -6,7 +6,7 @@
 
 EAPI="4"
 
-inherit eutils
+inherit eutils user
 
 MY_PV="${PV%?}.${PV: -1}"  # ex. 4.2b -> 4.2.b
 MY_P="alfresco-community-solr-${MY_PV}"

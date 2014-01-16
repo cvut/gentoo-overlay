@@ -13,7 +13,7 @@ EAPI="5"
 
 JAVA_PKG_IUSE="doc"
 
-inherit eutils java-pkg-2 java-ant-2
+inherit eutils java-pkg-2 java-ant-2 user
 
 MY_P=${PN}_src_${PV//./_}
 DESCRIPTION="Openfire (formerly wildfire) real time collaboration (RTC) server"

@@ -6,7 +6,7 @@ EAPI=4
 # Maintainer notes:
 # - USE flags apache2, debug and doc are not tested!
 
-inherit eutils
+inherit eutils user
 
 MY_PN="shibboleth"
 MY_P="${MY_PN}-${PV}"

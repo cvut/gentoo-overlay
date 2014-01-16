@@ -9,7 +9,7 @@ EAPI="2"
 
 DESCRIPTION="JBoss Application Server ${PV} (standalone only)" 
 
-inherit eutils
+inherit eutils user
 
 MY_P="jboss-as-${PV}.Final"
 SLOT="7.1"
