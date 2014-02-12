@@ -54,7 +54,7 @@ List of ebuilds
    * with fixes for OpenJDK
 * **www-apps/liferay-portal-bin** (6.1.1)
    * with fixes for OpenJDK
-* **www-apps/xwiki-enterprise-bin** (4.5.3, 5.0.3, 5.2-M1, 5.2-M2, 5.2.1)
+* **www-apps/xwiki-enterprise-bin** (4.5.3, 5.0.3, 5.2-M1, 5.2-M2, 5.2.1, 5.4.1)
 * **www-misc/shibboleth-sp** (2.4.3)
    * with FastCGI and Apache support, customized configuration (if you’re not _forced_ to use Shibboleth, please run away… it’s horrible protocol)
 * **www-servers/nginx** (1.2.2, 1.4.1)
