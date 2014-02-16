@@ -1,0 +1,14 @@
+diff --git a/lib/gitlab/ldap/user.rb b/lib/gitlab/ldap/user.rb
+index fd36dda..7d1e337 100644
+--- a/lib/gitlab/ldap/user.rb
++++ b/lib/gitlab/ldap/user.rb
+@@ -84,7 +84,8 @@ def blocked?(dn)
+         private
+ 
+         def find_by_uid(uid)
+-          model.where(provider: provider, extern_uid: uid).last
++          # LDAP distinguished name is case-insensitive
++          model.where("provider = ? and lower(extern_uid) = ?", provider, uid.downcase).last
+         end
+ 
+         def provider
