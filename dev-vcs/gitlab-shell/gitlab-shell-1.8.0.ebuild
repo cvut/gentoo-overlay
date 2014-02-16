@@ -29,6 +29,7 @@ MERGE_TYPE="binary"
 
 RUBY_PATCHES=(
 	"${PN}-1.7.1-paths-from-config.patch"
+	"${PN}-1.8.0-redis-db-option.patch"
 )
 
 GIT_USER="git"
