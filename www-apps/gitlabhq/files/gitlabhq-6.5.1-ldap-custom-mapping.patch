@@ -83,17 +83,17 @@ index 2539097..739de8e 100644
    end
  
 diff --git a/lib/gitlab/ldap/user.rb b/lib/gitlab/ldap/user.rb
-index bd12d8c..95db445 100644
+index 8afd64f..f1f1bea 100644
 --- a/lib/gitlab/ldap/user.rb
 +++ b/lib/gitlab/ldap/user.rb
-@@ -88,6 +88,10 @@ module Gitlab
-           model.where("provider = ? and lower(extern_uid) = ?", provider, uid.downcase).last
+@@ -97,6 +97,10 @@ module Gitlab
+           'ldap'
          end
  
 +        def username
 +          (auth.info.username || auth.info.nickname).to_s.force_encoding('utf-8')
 +        end
 +
-         def provider
-           'ldap'
+         def raise_error(message)
+           raise OmniAuth::Error, "(LDAP) " + message
          end
