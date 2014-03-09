@@ -20,7 +20,7 @@ IUSE=""
 GEMS_DEPEND=">=dev-db/sqlite-3.6.16"
 DEPEND="${GEMS_DEPEND}"
 RDEPEND="${DEPEND}"
-ruby_add_bdepend "
+ruby_add_rdepend "
 	virtual/rubygems
 	>=dev-ruby/bundler-1.0"
 
