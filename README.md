@@ -29,6 +29,7 @@ List of ebuilds
    * dependency for shibboleth-sp
 * **dev-libs/xmltooling-c** (1.4.2)
    * dependency for shibboleth-sp
+* **dev-lua/luaexpat** (1.3.0)
 * **dev-python/docopt** (0.6.1)
 * **dev-ruby/bundler** (1.3.5)
    * with `ruby_targets_ruby20` flag
