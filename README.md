@@ -45,6 +45,8 @@ List of ebuilds
 * **media-gfx/swftools** (0.9.2)
    * with enabled pdf2swf without poppler (see [#412423](https://bugs.gentoo.org/show_bug.cgi?id=412423))
 * **net-im/openfire** (3.8.1)
+* **net-im/prosody** (0.9.4)
+   * with [mod_auth_ldap](https://code.google.com/p/prosody-modules/wiki/mod_auth_ldap)
 * **net-misc/minidlna** (1.0.24)
    * with improved ebuild and init script
 * **www-apps/gitlabhq** (4.0.0, 6.0.2, 6.5.1)
