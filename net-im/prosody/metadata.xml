@@ -15,9 +15,11 @@
     <name>Jakub Jirutka</name>
   </maintainer>
   <use>
-    <flag name="libevent">Use libevent for event handling</flag>
-    <flag name="zlib">Support for compressing XMPP streams with mod_compression</flag>
+    <flag name="carbons">Install third-party module mod_carbons from http://prosody-modules.googlecode.com</flag>
     <flag name="jit">Use LuaJIT instead of vanilla Lua</flag>
-    <flag name="ldap">Install mod_auth_ldap module from http://prosody-modules.googlecode.com</flag>
+    <flag name="ldap">Install third-party module mod_auth_ldap from http://prosody-modules.googlecode.com</flag>
+    <flag name="libevent">Use libevent for event handling</flag>
+    <flag name="smacks">Install third-party module mod_smacks from http://prosody-modules.googlecode.com</flag>
+    <flag name="zlib">Support for compressing XMPP streams with mod_compression</flag>
   </use>
 </pkgmetadata>
