@@ -44,7 +44,7 @@ src_install() {
 pkg_postinst() {
 	einfo "To configure sshd to fetch user authorized keys from LDAP server add this"
 	einfo "to /etc/ssh/sshd_config:"
-	einfo "    AuthorizedKeysCommand /usr/bin/ssh-ldap-wrapper"
+	einfo "    AuthorizedKeysCommand /usr/bin/ssh-ldap-pubkey-wrapper"
 	einfo "    AuthorizedKeysCommandUser nobody"
 	einfo
 }
