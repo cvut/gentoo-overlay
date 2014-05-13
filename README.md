@@ -34,7 +34,7 @@ List of ebuilds
 * **dev-python/docopt** (0.6.1)
 * **dev-ruby/bundler** (1.3.5)
    * with `ruby_targets_ruby20` flag
-* **dev-util/activiti-bin** (5.14)
+* **dev-util/activiti-bin** (5.14, 5.15.1)
 * **dev-util/sonar-bin** (3.2, 3.5, 3.7)
    * proper ebuild, much better than godin’s :)
 * **dev-vcs/gitlab-shell** (1.7.1, 1.8.0)

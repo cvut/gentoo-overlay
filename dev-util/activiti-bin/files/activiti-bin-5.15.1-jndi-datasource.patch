@@ -1,0 +1,34 @@
+--- a/activiti-explorer/WEB-INF/activiti-standalone-context.xml	2014-05-13 17:34:30.730651845 +0200
++++ b/activiti-explorer/WEB-INF/activiti-standalone-context.xml	2014-05-13 17:35:23.131855967 +0200
+@@ -25,12 +25,8 @@
+     <property name="ignoreUnresolvablePlaceholders" value="true" />
+   </bean>
+     
+-  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+-    <property name="driverClassName" value="${jdbc.driver}" />
+-    <property name="url" value="${jdbc.url}" />
+-    <property name="username" value="${jdbc.username}" />
+-    <property name="password" value="${jdbc.password}" />
+-    <property name="defaultAutoCommit" value="false" />
++  <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
++    <property name="jndiName" value="java:comp/env/jdbc/DataSource" />
+   </bean>
+ 
+   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+--- a/activiti-rest/WEB-INF/classes/activiti-context.xml	2014-05-13 17:42:02.478547959 +0200
++++ b/activiti-rest/WEB-INF/classes/activiti-context.xml	2014-05-13 17:42:22.925457010 +0200
+@@ -25,12 +25,8 @@
+ 		<property name="ignoreResourceNotFound" value="true" />
+ 	</bean>
+ 	
+-	<bean id="dataSource"
+-		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+-		<property name="driverClass" value="${jdbc.driver}" />
+-		<property name="url" value="${jdbc.url}" />
+-		<property name="username" value="${jdbc.username}" />
+-		<property name="password" value="${jdbc.password}" />
++	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
++		<property name="jndiName" value="java:comp/env/jdbc/DataSource" />
+ 	</bean>
+ 
+ 	<bean id="transactionManager"
