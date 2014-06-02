@@ -8,16 +8,16 @@ inherit eutils
 
 # Maintainer notes:
 # - The newest tagged version 3.0.0-r1 is pretty old now and no newer version
-#   has been released. Thus this ebuild refers to Git revision instead.
+#   has been released. Thus this ebuild sources my fork with some patches
+#   included.
 
-# 2013-12-23 19:36 by QueuingKoala
-MY_PV="89f369c5bbd13fbf0da2ea6361632c244e8af532"
+MY_PV="eb5fc5dd6281b05670d80f26f080cdb6fdf8824e"
 MY_P="${PN}-${MY_PV}"
 
 DESCRIPTION="Small RSA key management package, based on OpenSSL."
 HOMEPAGE="https://github.com/OpenVPN/easy-rsa"
 KEYWORDS="amd64 arm hppa ppc x86"
-SRC_URI="https://github.com/OpenVPN/${PN}/archive/${MY_PV}.tar.gz"
+SRC_URI="https://github.com/jirutka/${PN}/archive/${MY_PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="3"
@@ -27,10 +27,6 @@ DEPEND=">=dev-libs/openssl-1.0.0"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}/easyrsa3"
-
-src_prepare() {
-	epatch "${FILESDIR}/${P}-temp-files.patch"
-}
 
 src_install() {
 	dobin easyrsa
