@@ -7,8 +7,8 @@ Gentoo overlay with some ebuilds created or modified on [CTU](http://www.cvut.cz
 List of ebuilds
 ---------------
 
-* **app-crypt/easy-rsa** (2.2.0)
-   * with patch for [subjectAltName](http://www.msquared.id.au/articles/easy-rsa-subjectaltname/)
+* **app-crypt/easy-rsa** (2.2.0, 3.0.0\_pre)
+   * 2.2.0 with patch for [subjectAltName](http://www.msquared.id.au/articles/easy-rsa-subjectaltname/)
 * **app-misc/alfresco-bin** (4.2.b, 4.2d)
    * with Share, GoogleDocs integration, SOLR server
 * **app-misc/alfresco-solr-bin** (4.2.b)
