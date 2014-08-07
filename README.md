@@ -17,6 +17,7 @@ List of ebuilds
 * **dev-db/mongodb (2.4.6)**
    * with patch for [SERVER-9248](https://jira.mongodb.org/browse/SERVER-9248)
 * **dev-java/artifactory-bin** (2.6.6)
+* **dev-java/hikaricp-bin** (2.0.1)
 * **dev-java/jboss-as-bin** (7.1)
    * binary package, standalone mode only, proper init script included!
 * **dev-java/jdbc-mysql-bin** (5.1.18)
