@@ -1,0 +1,90 @@
+--- a/portal-impl/src/com/liferay/portal/image/ImageToolImpl.java
++++ b/portal-impl/src/com/liferay/portal/image/ImageToolImpl.java
+@@ -24,10 +24,6 @@
+ import com.liferay.portal.kernel.util.JavaDetector;
+ import com.liferay.portal.util.FileImpl;
+ 
+-import com.sun.media.jai.codec.ImageCodec;
+-import com.sun.media.jai.codec.ImageDecoder;
+-import com.sun.media.jai.codec.ImageEncoder;
+-
+ import java.awt.Graphics2D;
+ import java.awt.Graphics;
+ import java.awt.Image;
+@@ -43,8 +39,11 @@
+ import java.io.OutputStream;
+ 
+ import java.util.Enumeration;
++import java.util.Iterator;
+ 
+ import javax.imageio.ImageIO;
++import javax.imageio.ImageReader;
++import javax.imageio.stream.ImageInputStream;
+ 
+ import javax.media.jai.RenderedImageAdapter;
+ 
+@@ -169,28 +168,23 @@
+ 		RenderedImage renderedImage = null;
+ 		String type = TYPE_NOT_AVAILABLE;
+ 
+-		Enumeration<ImageCodec> enu = ImageCodec.getCodecs();
+-
+-		while (enu.hasMoreElements()) {
+-			ImageCodec codec = enu.nextElement();
++		try {
++			ImageInputStream iis = ImageIO.createImageInputStream(new UnsyncByteArrayInputStream(bytes));
+ 
+-			if (codec.isFormatRecognized(bytes)) {
+-				type = codec.getFormatName();
++			Iterator<ImageReader> readers = ImageIO.getImageReaders(iis);
++			while (readers.hasNext()) {
++				ImageReader reader = readers.next();
++				reader.setInput(iis);
+ 
+-				ImageDecoder decoder = ImageCodec.createImageDecoder(
+-					type, new UnsyncByteArrayInputStream(bytes), null);
+-
+-				try {
+-					renderedImage = decoder.decodeAsRenderedImage();
+-				}
+-				catch (IOException ioe) {
+-					if (_log.isDebugEnabled()) {
+-						_log.debug(type + ": " + ioe.getMessage());
+-					}
+-				}
++				type = reader.getFormatName().toLowerCase();
++				renderedImage = reader.readAsRenderedImage(0, null);
+ 
+ 				break;
+ 			}
++		} catch (IOException ioe) {
++			if (_log.isDebugEnabled()) {
++				_log.debug(type + ": " + ioe.getMessage());
++			}
+ 		}
+ 
+ 		if (type.equals("jpeg")) {
+@@ -330,10 +324,7 @@
+ 		throws IOException {
+ 
+ 		if (contentType.contains(TYPE_BMP)) {
+-			ImageEncoder imageEncoder = ImageCodec.createImageEncoder(
+-				TYPE_BMP, os, null);
+-
+-			imageEncoder.encode(renderedImage);
++			ImageIO.write(renderedImage, TYPE_BMP, os);
+ 		}
+ 		else if (contentType.contains(TYPE_GIF)) {
+ 			encodeGIF(renderedImage, os);
+@@ -349,10 +340,7 @@
+ 		else if (contentType.contains(TYPE_TIFF) ||
+ 				 contentType.contains("tif")) {
+ 
+-			ImageEncoder imageEncoder = ImageCodec.createImageEncoder(
+-				TYPE_TIFF, os, null);
+-
+-			imageEncoder.encode(renderedImage);
++			ImageIO.write(renderedImage, TYPE_TIFF, os);
+ 		}
+ 	}
+ 

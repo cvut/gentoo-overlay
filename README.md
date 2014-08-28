@@ -56,7 +56,7 @@ List of ebuilds
 * **www-apps/haste-client** (1.0)
    * [CLI Haste client](https://github.com/jirutka/haste-client) written in Python
 * **www-apps/haste-server** (0.1.0)
-* **www-apps/liferay-portal** (6.1.1)
+* **www-apps/liferay-portal** (6.1.1, 6.1.2)
    * with fixes for OpenJDK
 * **www-apps/liferay-portal-bin** (6.1.1)
    * with fixes for OpenJDK
