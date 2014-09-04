@@ -50,7 +50,7 @@ List of ebuilds
    * with [mod_auth_ldap](https://code.google.com/p/prosody-modules/wiki/mod_auth_ldap), [mod_carbons](http://code.google.com/p/prosody-modules/wiki/mod_carbons) and [mod_smacks](http://code.google.com/p/prosody-modules/wiki/mod_smacks)
 * **net-misc/minidlna** (1.0.24)
    * with improved ebuild and init script
-* **sys-auth/ssh-ldap-pubkey** (0.2.1, 0.2.2)
+* **sys-auth/ssh-ldap-pubkey** (0.2.1, 0.2.2, 0.2.3)
 * **www-apps/gitlabhq** (4.0.0, 6.0.2, 6.5.1)
    * with some fixes and enhacements
 * **www-apps/haste-client** (1.0)
