@@ -1,0 +1,85 @@
+#!/sbin/runscript
+# Copyright 1999-2014 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+: ${name:=${RC_SVCNAME}}
+: ${pidfile:=/run/${RC_SVCNAME}.pid}
+: ${user:=nobody}
+
+command="java"
+command_background="true"
+
+start_stop_daemon_args="--quiet --user $user"
+retry="SIGTERM/20"
+
+depend() {
+	need net
+}
+
+start_pre() {
+	if [ "$RC_SVCNAME" == "jetty-runner" ]; then
+		ewarn "You are not supposed to run this runscript directly. Instead, you should"
+		ewarn "create a symlink for the application you want to run as well as a copy of"
+		ewarn "the configuration file and modify it appropriately, like so:"
+		ewarn ""
+		ewarn "    ln -s jetty-runner /etc/init.d/myapp"
+		ewarn "    cp /etc/conf.d/jetty-runner /etc/conf.d/myapp"
+		ewarn ""
+	fi
+
+	if [ ! -e "$webapp_path" ]; then
+		eerror "File or directory '$webapp_path' does not exist!"; exit 1
+	fi
+
+	if [ -n "$server_out_log" ]; then
+		checkpath -f -o "$user" "$server_out_log"
+	fi
+
+	if [ -n "$server_access_log" ]; then
+		checkpath -f -o "$user" "$server_access_log"
+	fi
+
+	if [ -n "$server_port" ] && [ "$server_port" -gt 0 ] &&
+		lsof -Pi :$server_port -s TCP:LISTEN &>/dev/null
+	then
+		eerror "Port ${server_port} is already in use!"; exit 1
+	fi
+
+	java_opts="
+		-server
+		${java_heap_size:+ -Xms${java_heap_size}M -Xmx${java_heap_size}M}
+		${java_perm_size:+ -XX:PermSize=${java_perm_size}m -XX:MaxPermSize=${java_perm_size}m}
+		${java_new_ratio:+ -XX:NewRatio=${java_new_ratio}}
+		-Dfile.encoding=utf-8
+		$java_opts"
+
+	local item; for item in $java_properties; do
+		java_opts+=" -D${item}"
+	done
+
+	jetty_opts="
+		$(optif --port "$server_port")
+		$(optif --host "$server_bind_address")
+		$(optif --out  "$server_out_log")
+		$(optif --log  "$server_access_log")"
+
+	local path; for path in ${server_extra_jars/:/ }; do
+		if [[ "$path" != */* ]]; then
+			jar="$(java-config -p "$path")" && jetty_opts+="--jar $jar"
+		elif [ -f "$path" ]; then
+			jetty_opts+="--jar $path"
+		elif [ -d "$path" ]; then
+			jetty_opts+="--lib $path"
+		else
+			ewarn "JAR file or directory $path does not exist!"
+		fi
+	done
+
+	jetty_runner="${jetty_runner:-$(java-config -p jetty-runner)}"
+
+	command_args="$java_opts -jar $jetty_runner $jetty_opts $webapp_path"
+}
+
+optif() {
+	test -n "$2" && echo "$1 $2"
+}
