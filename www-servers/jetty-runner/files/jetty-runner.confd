@@ -5,8 +5,14 @@
 # YOU WANT TO RUN AND MODIFY THAT INSTEAD (and remove this notice).
 #
 
+# User to run the application.
+user="nobody"
+
 # Path of the WAR file, the web app directory, or the context xml file to run.
 webapp_path=""
+
+# The relative URL root (i.e. context path) of the application.
+#context_root=""
 
 # The port to listen on for HTTP connections (or 0 for a randomly allocated port).
 server_port="8080"

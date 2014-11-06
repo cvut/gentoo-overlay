@@ -65,19 +65,19 @@ start_pre() {
 
 	local path; for path in ${server_extra_jars/:/ }; do
 		if [[ "$path" != */* ]]; then
-			jar="$(java-config -p "$path")" && jetty_opts+="--jar $jar"
+			jar="$(java-config -p "$path")" && jetty_opts+=" --jar $jar"
 		elif [ -f "$path" ]; then
-			jetty_opts+="--jar $path"
+			jetty_opts+=" --jar $path"
 		elif [ -d "$path" ]; then
-			jetty_opts+="--lib $path"
+			jetty_opts+=" --lib $path"
 		else
 			ewarn "JAR file or directory $path does not exist!"
 		fi
 	done
 
-	jetty_runner="${jetty_runner:-$(java-config -p jetty-runner)}"
+	jetty_opts+=" $(optif --path "$context_root") $webapp_path"
 
-	command_args="$java_opts -jar $jetty_runner $jetty_opts $webapp_path"
+	command_args="$java_opts -jar ${jetty_runner:-$(java-config -p jetty-runner)} $jetty_opts"
 }
 
 optif() {
