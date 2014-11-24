@@ -23,6 +23,7 @@ List of ebuilds
 * **dev-java/jdbc-mysql-bin** (5.1.18)
    * jdbc-mysql can’t be built on JDK 7, so there’s a binary package…
 * **dev-java/jdbc-oracle-bin** (12.1)
+* **dev-java/maven-bin** (3.2.3)
 * **dev-java/rhino** (1.7R4)
 * **dev-lang/ruby** (1.9.3\_p194, 1.9.3\_p286)
    * with [“Falcon”](https://gist.github.com/4136519) performance patches and backported COW-friendly GC
