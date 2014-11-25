@@ -67,8 +67,7 @@ List of ebuilds
 * **www-servers/jetty-runner** (9.2.3)
 * **www-servers/nginx** (1.2.2, 1.4.1)
    * with built-in Passenger module (for ree18 and ruby19), [sticky module](http://code.google.com/p/nginx-sticky-module/), [echo module](https://github.com/agentzh/echo-nginx-module) and customized config
-* **www-servers/tomcat** (7.0.32, 7.0.42)
-   * customized Tomcat ebuild with improved tomcat-instances manager, config files, JMX and log4j support
+* **www-servers/tomcat** (7.0.32, 7.0.42, 7.0.56)
 
 Feel free to contribute!
 

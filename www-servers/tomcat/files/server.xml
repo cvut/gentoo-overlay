@@ -2,7 +2,7 @@
 
 <!-- Documentation at http://tomcat.apache.org/tomcat-7.0-doc/config/ -->
 
-<Server port="8005" shutdown="SHUTDOWN">
+<Server port="-1" shutdown="disabled">
 	<!-- Security listener
 	<Listener className="org.apache.catalina.security.SecurityListener" />
 	-->

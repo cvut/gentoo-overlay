@@ -17,5 +17,7 @@
 		Build with full Apache Commons Logging implementation and use log4j 
 		for Tomcat's internal logging.
 	</flag>
+	<flag name="websockets">Builds websockets api and implementation (requires java 7)</flag>
+    <flag name='jmx-remote'>Build jmx-remote to allow remote monitoring and management via JMX</flag>
   </use>
 </pkgmetadata>
