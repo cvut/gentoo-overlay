@@ -1,8 +1,8 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 # Maintainer notes:
 # - This ebuild supports Tomcat only for now.
@@ -10,18 +10,17 @@ EAPI="4"
 #   with libcups.so.2 from the cups package (in case of icedtea-bin at least),
 #   therefore we need icedtea with USE cups for now :( 
 
-inherit eutils java-utils-2
+inherit eutils java-pkg-2 java-ant-2 user
 
-MY_PN="liferay-portal"
-MY_PV="${PV}-ce-ga2"
-MY_P="${MY_PN}-${MY_PV}"
+MY_PV="6.2-ce-ga2"
+MY_P="${PN}-src-${MY_PV}"
 
-DESCRIPTION="Community Edition of Liferay, open source enterprise portal"
+DESCRIPTION="Community Edition of Liferay, an enterprise shit you don't wanna use..."
 HOMEPAGE="http://liferay.com/"
-SRC_URI="mirror://sourceforge/lportal/${MY_PN}-tomcat-${MY_PV}-20120731132656558.zip"
+SRC_URI="mirror://sourceforge/lportal/${MY_P}-20140319114139101.zip"
 
 LICENSE="LGPL-3"
-SLOT="6.1"
+SLOT="6.2"
 KEYWORDS="~x86 ~amd64"
 
 IUSE="+postgres +tomcat"
@@ -31,18 +30,25 @@ TOMCAT_SLOT="7"
 ECJ_SLOT="3.7"
 
 COMMON_DEP="
-	>=www-servers/tomcat-7.0.29"
+	tomcat? ( >=www-servers/tomcat-7.0.29 )"
 DEPEND="${COMMON_DEP}
+	>=virtual/jdk-1.6
+	>=dev-java/ant-core-1.7.0:0
+	dev-java/ant-eclipse-ecj:${ECJ_SLOT}
 	app-arch/unzip"
 RDEPEND="${COMMON_DEP}
 	>=virtual/jre-1.5
-	>=virtual/jdk-1.5
-	dev-java/eclipse-ecj:${ECJ_SLOT}
+	>=dev-java/tomcat-scripts-0.4
 	postgres? ( dev-java/jdbc-postgresql )"
 
-MERGE_TYPE="binary"
-
 S="${WORKDIR}/${MY_P}"
+
+JAVA_PKG_WANT_SOURCE="1.6"
+JAVA_PKG_WANT_TARGET="1.6"
+JAVA_PKG_FORCE_COMPILER="ecj-${ECJ_SLOT}"
+JAVA_PKG_BSFIX_NAME="build.xml build-common.xml build-common-java.xml build-common-web.xml build-dist.xml"
+
+EANT_BUILD_TARGET="all"
 
 TOMCAT_HOME="/usr/share/tomcat-${TOMCAT_SLOT}"
 
@@ -56,6 +62,8 @@ LOGS_DIR="/var/log/${MY_NAME}"
 TEMP_DIR="/var/tmp/${MY_NAME}"
 
 pkg_setup() {
+	java-pkg-2_pkg_setup
+
 	if [[ "$(java-pkg_get-current-vm)" =~ "icedtea-bin" ]]; then
 		ewarn
 		ewarn "When using IcedTea from binary package, make sure that you have"
@@ -67,24 +75,19 @@ pkg_setup() {
     enewuser ${MY_USER} -1 /bin/sh ${DEST_DIR} ${MY_GROUP}
 }
 
-src_prepare() {
-	# replace code that uses internal and deprecated Sun JDK classes with 
-	# proper implementation
-	if ! [[ "$(java-pkg_get-current-vm)" =~ "sun-jdk" ]]; then
-		local libdir="${S}/$(basename tomcat-*)/webapps/ROOT/WEB-INF/lib"
+java_prepare() {
+	# where to temporary deploy files
+	sed -i \
+		-e "/app.server.parent.dir=/ s|=.*|=${S}/server|" \
+		-e '/app.server.tomcat.dir=/ s|=.*|=${app.server.parent.dir}/tomcat|' \
+		app.server.properties || die "failed to filter build.properties"
 
-		mkdir ${T}/portal-impl
-		cd ${T}/portal-impl
+	mkdir -p ${S}/server/tomcat/{bin,lib,webapps}
+	# cheat build script...
+	touch ${S}/server/tomcat/lib/catalina.jar
 
-		einfo "Replacing broken classes in portal-impl.jar"
-		tar -xf ${FILESDIR}/portal-impl.jar-${PV}-fix-imagetool.tar \
-			|| die "failed to unpack"
-		jar uf ${libdir}/portal-impl.jar com \
-			|| die "filed to replace class in portal-impl.jar"
-
-		chmod 644 ${libdir}/*
-		cd ${S}
-	fi
+	# fix ImageToolImpl to work on OpenJDK as well
+	epatch "${FILESDIR}/${P}-fix-imagetool.patch"
 }
 
 src_install() {
@@ -146,15 +149,19 @@ src_install() {
 
 	### Install Liferay ###
 
-	cd tomcat-* || die
+	cd server/tomcat || die
+
+	# register dependencies to classpath
+	java-pkg_addcp "$(java-pkg_getjars eclipse-ecj-${ECJ_SLOT},tomcat-servlet-api-3*)"
+	use postgres && java-pkg_addcp "$(java-pkg_getjars jdbc-postgresql)"
 
 	# remove useless jars
 	rm lib/ext/{mysql,postgresql}.jar
 	rm webapps/ROOT/WEB-INF/lib/tomcat-jdbc.jar
 
 	# install shared libs
-	insinto ${dest}/lib
-	doins lib/ext/*.jar
+	java-pkg_jarinto ${dest}/lib
+	java-pkg_dojar lib/ext/*.jar
 
 	# jars to temp
 	insinto ${TEMP_DIR}
@@ -186,14 +193,14 @@ src_install() {
 
 	### RC scripts ###
 
-	local path; for path in ${FILESDIR}/liferay-tc.*; do
+	local path; for path in ${FILESDIR}/liferay-tc.*-r1; do
 		cp ${path} ${T} || die "failed to copy ${path}"
 		local tfile=${T}/$(basename ${path})
 		sed -i \
 			-e "s|@TOMCAT_SLOT@|${TOMCAT_SLOT}|" \
 			-e "s|@CATALINA_HOME@|${TOMCAT_HOME}|" \
 			-e "s|@CATALINA_BASE@|${dest}|" \
-			-e "s|@EXTRA_JARS@|tomcat-servlet-api-3*,eclipse-ecj-3*${jdbc_jar:+,${jdbc_jar}}|" \
+			-e "s|@EXTRA_JARS@|${PN}-${SLOT}|" \
 			-e "s|@TEMP_DIR@|${TEMP_DIR}|" \
 			-e "s|@CONF_DIR@|${conf}|" \
 			-e "s|@USER@|${MY_USER}|" \
@@ -203,8 +210,8 @@ src_install() {
 			|| die "failed to filter $(basename ${path})"
 	done
 
-	newinitd ${T}/liferay-tc.init ${MY_NAME}
-	newconfd ${T}/liferay-tc.conf ${MY_NAME}
+	newinitd ${T}/liferay-tc.init-r1 ${MY_NAME}
+	newconfd ${T}/liferay-tc.conf-r1 ${MY_NAME}
 }
 
 pkg_postinst() {

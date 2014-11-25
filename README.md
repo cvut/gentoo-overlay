@@ -57,10 +57,10 @@ List of ebuilds
 * **www-apps/haste-client** (1.0)
    * [CLI Haste client](https://github.com/jirutka/haste-client) written in Python
 * **www-apps/haste-server** (0.1.0)
-* **www-apps/liferay-portal** (6.1.1, 6.1.2)
-   * with fixes for OpenJDK
-* **www-apps/liferay-portal-bin** (6.1.1)
-   * with fixes for OpenJDK
+* **www-apps/liferay-portal** (6.1.1, 6.1.2, 6.2.1)
+   * with fixes for OpenJDK; if you’re not crazy masochist, run away from Liferay!
+* **www-apps/liferay-portal-bin** (6.1.1, 6.2.1)
+   * with fixes for OpenJDK; if you’re not crazy masochist, run away from Liferay!
 * **www-apps/xwiki-enterprise-bin** (4.5.3, 5.0.3, 5.2-M1, 5.2-M2, 5.2.1, 5.4.1)
 * **www-misc/shibboleth-sp** (2.4.3)
    * with FastCGI and Apache support, customized configuration (if you’re not _forced_ to use Shibboleth, please run away… it’s horrible protocol)

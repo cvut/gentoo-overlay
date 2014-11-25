@@ -1,0 +1,13 @@
+#!/sbin/runscript
+# Copyright 1999-2014 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+source /usr/share/tomcat-scripts/runscript.sh
+
+catalina_home="@CATALINA_HOME@"
+catalina_base="@CATALINA_BASE@"
+catalina_temp="@TEMP_DIR@"
+
+depend() {
+	use dns logger net
+}

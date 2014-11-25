@@ -1,0 +1,93 @@
+# Liferay/Tomcat configuration
+
+# JVM Runtime
+# Using the default setting, it will determine your JVM from the system-vm
+# set using java-config. Run 'eselect java-vm list' to get possible values.
+#
+#tomcat_jvm="icedtea-7"
+
+# Initial and maximum size of the heap (in megabytes).
+# Note: This sets parameters -Xms and -Xmx.
+#
+java_min_heap_size="2048"
+java_max_heap_size="2048"
+
+# Initial and maximum size of the Permanent Generation space (in megabytes).
+# Note: This sets parameters -XX:PermSize and -XX:MaxPermSize.
+#
+java_min_perm_size="1024"
+java_max_perm_size="1024"
+
+# Initial and maximum size of the Eden space (in megabytes).
+# Note: This sets parameters -XX:NewSize and -XX:MaxNewSize.
+#
+#java_min_new_size="64"
+#java_max_new_size="64"
+
+# Additional options to pass to the JVM.
+# Example to tune GC:
+#   java_opts="-XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:+CMSParallelRemarkEnabled"
+#
+# Liferay defaults
+java_opts="-Dfile.encoding=UTF8 -Dorg.apache.catalina.loader.WebappClassLoader.ENABLE_CLEAR_REFERENCES=false"
+#
+# Performance optimization
+JAVA_OPTS="${JAVA_OPTS} -XX:NewRatio=2 -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:+CMSParallelRemarkEnabled -XX:CMSInitiatingOccupancyFraction=80"
+
+# Additional packages to put on the default classpath.
+# jakarta-jstl is needed for some of the examples.
+# Note: The extra jars listed here will be visible to webapps.
+# Example:
+#   tomcat_extra_jars="jakarta-jstl,jdbc-postgresql"
+#
+tomcat_extra_jars="@EXTRA_JARS@"
+
+# Where are your catalina.properties and catalina.policy located.
+#
+#catalina_config="@CONF_DIR@/catalina.properties"
+#catalina_policy="@CONF_DIR@/catalina.policy"
+
+# Where is your logging config located.
+# 
+tomcat_logging_conf="@CONF_DIR@/tomcat-logging.properties"
+
+# User of this instance
+tomcat_user="@USER@"
+
+# Tomcat startup
+# 	debug             Start Catalina in a debugger
+# 	-security debug   Debug Catalina with a security manager
+# 	jpda start        Start Catalina under JPDA debugger
+# 	start             Start Catalina in a separate window
+# 	-security start   Start in a separate window with security manager
+#
+#tomcat_start="start"
+
+# Java Management Extensions (JMX)
+#
+# jmx_ssl          Enable/disable secure monitoring via TLS/SSL (enabled by default).
+#
+# jmx_access_file  (Optional) Override location of RMI access file. This file 
+#                  must exist and be in format: <username> <readonly|readwrite>
+#                  Example: admin readwrite
+#
+# jmx_passwd_file  (Optional) Override location of RMI password file. This file 
+#                  must exist and be in format: <username> <plain password>
+#
+# rmi_hostname     (Optional) Specify your domain name or leave empty to use 
+#                  your IP address instead.
+#
+#jmx_ssl=disable
+#jmx_access_file="@CONF_DIR@/jmxremote.access"
+#jmx_passwd_file="@CONF_DIR@/jmxremote.password"
+#rmi_hostname="example.org"
+
+# Java Platform Debugger Architecture (JPDA)
+# Override default JPDA address and transport for the "jpda start" command.
+#
+#jpda_address="8000"
+#jpda_transport="dt_socket"
+
+# Additional options to pass to Catalina.
+#
+#catalina_opts=""

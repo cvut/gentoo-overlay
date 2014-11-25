@@ -126,14 +126,7 @@ src_install() {
 	insinto ${conf}
 
 	# install server configs
-	local tfile="server.xml"
-	local randpw=$(echo ${RANDOM}|md5sum|cut -c 1-15)
-
-	cp ${FILESDIR}/${tfile} ${T} || die "failed to copy ${tfile}"
-	sed -i -e "s|@SHUTDOWN@|${randpw}|" \
-		${T}/${tfile} || die "failed to filter ${tfile}"
-
-	doins ${T}/${tfile}
+	doins ${FILESDIR}/server.xml
 	doins ${FILESDIR}/tomcat-logging.properties
 
 	# install portal-context

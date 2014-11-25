@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 # Maintainer notes:
 # - This ebuild supports Tomcat only for now.
@@ -10,18 +10,18 @@ EAPI="4"
 #   with libcups.so.2 from the cups package (in case of icedtea-bin at least),
 #   therefore we need icedtea with USE cups for now :( 
 
-inherit eutils java-utils-2
+inherit eutils java-utils-2 user
 
 MY_PN="liferay-portal"
-MY_PV="${PV}-ce-ga2"
+MY_PV="6.2-ce-ga2"
 MY_P="${MY_PN}-${MY_PV}"
 
-DESCRIPTION="Community Edition of Liferay, open source enterprise portal"
+DESCRIPTION="Community Edition of Liferay, an enterprise shit you don't wanna use..."
 HOMEPAGE="http://liferay.com/"
-SRC_URI="mirror://sourceforge/lportal/${MY_PN}-tomcat-${MY_PV}-20120731132656558.zip"
+SRC_URI="mirror://sourceforge/lportal/${MY_PN}-tomcat-${MY_PV}-20140319114139101.zip"
 
 LICENSE="LGPL-3"
-SLOT="6.1"
+SLOT="6.2"
 KEYWORDS="~x86 ~amd64"
 
 IUSE="+postgres +tomcat"
@@ -35,8 +35,9 @@ COMMON_DEP="
 DEPEND="${COMMON_DEP}
 	app-arch/unzip"
 RDEPEND="${COMMON_DEP}
-	>=virtual/jre-1.5
-	>=virtual/jdk-1.5
+	>=virtual/jre-1.6
+	>=virtual/jdk-1.6
+	>=dev-java/tomcat-scripts-0.4
 	dev-java/eclipse-ecj:${ECJ_SLOT}
 	postgres? ( dev-java/jdbc-postgresql )"
 
@@ -68,23 +69,23 @@ pkg_setup() {
 }
 
 src_prepare() {
+	local libdir="${S}/$(basename tomcat-*)/webapps/ROOT/WEB-INF/lib"
+	mkdir ${T}/portal-impl
+	cd ${T}/portal-impl
+
 	# replace code that uses internal and deprecated Sun JDK classes with 
 	# proper implementation
-	if ! [[ "$(java-pkg_get-current-vm)" =~ "sun-jdk" ]]; then
-		local libdir="${S}/$(basename tomcat-*)/webapps/ROOT/WEB-INF/lib"
-
-		mkdir ${T}/portal-impl
-		cd ${T}/portal-impl
-
-		einfo "Replacing broken classes in portal-impl.jar"
+	if ! [[ "$(java-pkg_get-current-vm)" =~ "oracle-jdk" ]]; then
+		einfo "Replacing broken class in portal-impl.jar: ImageToolImpl.class"
 		tar -xf ${FILESDIR}/portal-impl.jar-${PV}-fix-imagetool.tar \
 			|| die "failed to unpack"
 		jar uf ${libdir}/portal-impl.jar com \
 			|| die "filed to replace class in portal-impl.jar"
-
-		chmod 644 ${libdir}/*
-		cd ${S}
+		rm -Rf com
 	fi
+
+	chmod 644 ${libdir}/*
+	cd ${S}
 }
 
 src_install() {
@@ -186,7 +187,7 @@ src_install() {
 
 	### RC scripts ###
 
-	local path; for path in ${FILESDIR}/liferay-tc.*; do
+	local path; for path in ${FILESDIR}/liferay-tc.*-r1; do
 		cp ${path} ${T} || die "failed to copy ${path}"
 		local tfile=${T}/$(basename ${path})
 		sed -i \
@@ -203,8 +204,8 @@ src_install() {
 			|| die "failed to filter $(basename ${path})"
 	done
 
-	newinitd ${T}/liferay-tc.init ${MY_NAME}
-	newconfd ${T}/liferay-tc.conf ${MY_NAME}
+	newinitd ${T}/liferay-tc.init-r1 ${MY_NAME}
+	newconfd ${T}/liferay-tc.conf-r1 ${MY_NAME}
 }
 
 pkg_postinst() {

@@ -2,7 +2,7 @@
 
 <!-- Documentation at http://tomcat.apache.org/tomcat-7.0-doc/config/ -->
 
-<Server port="8005" shutdown="@SHUTDOWN@">
+<Server port="-1" shutdown="disabled">
 
 	<!--APR library loader -->
 	<Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="off" />
@@ -60,6 +60,12 @@
 				  appBase="plugins"
 				  unpackWARs="true"
 				  autoDeploy="true" />
+
+			<!-- Replace request's remote IP address and protocol with values
+				 resented by a proxy via a request headers. -->
+			<Valve className="org.apache.catalina.valves.RemoteIpValve"
+					remoteIpHeader="X-Forwarded-For"
+					protocolHeader="X-Forwarded-Proto" />
 
 			<!-- Access log
 			<Valve className="org.apache.catalina.valves.AccessLogValve" 
