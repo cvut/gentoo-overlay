@@ -68,6 +68,7 @@ ruby_add_bdepend "
 #
 RUBY_PATCHES=(
 	"${P}-fix-gemfile.patch"
+	"${P}-fix-gemfile-modernizr.patch"
 	"${P}-fix-project-name-regex.patch"
 	"${PN}-6.0.2-fix-sendmail-config.patch"
 	"${P}-fix-ldap-dn-case.patch"
