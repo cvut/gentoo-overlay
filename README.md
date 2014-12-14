@@ -44,11 +44,14 @@ List of ebuilds
    * [Gitolite](https://github.com/sitaramc/gitolite) ebuild with added optional patch for GitLab (see [commits](https://github.com/gitlabhq/gitolite/commits/))
 * **mail-mta/mailcatcher** (0.5.12)
    * [mailcatcher](https://github.com/sj26/mailcatcher) with [persist patch](https://github.com/sj26/mailcatcher/pull/109) and removed exit button, intended for a standalone usage, init script included
+* **mail-mta/opensmtpd**
+* **mail-mta/opensmtpd-extras**
 * **media-gfx/swftools** (0.9.2)
    * with enabled pdf2swf without poppler (see [#412423](https://bugs.gentoo.org/show_bug.cgi?id=412423))
 * **net-im/openfire** (3.8.1)
 * **net-im/prosody** (0.9.4)
    * with [mod_auth_ldap](https://code.google.com/p/prosody-modules/wiki/mod_auth_ldap), [mod_carbons](http://code.google.com/p/prosody-modules/wiki/mod_carbons) and [mod_smacks](http://code.google.com/p/prosody-modules/wiki/mod_smacks)
+* **net-libs/libasr** (201412131641)
 * **net-misc/minidlna** (1.0.24)
    * with improved ebuild and init script
 * **sys-auth/ssh-ldap-pubkey** (0.2.1, 0.2.2, 0.2.3)
