@@ -49,7 +49,7 @@ List of ebuilds
 * **media-gfx/swftools** (0.9.2)
    * with enabled pdf2swf without poppler (see [#412423](https://bugs.gentoo.org/show_bug.cgi?id=412423))
 * **net-im/openfire** (3.8.1)
-* **net-im/prosody** (0.9.4)
+* **net-im/prosody** (0.9.4, 0.9.7)
    * with [mod_auth_ldap](https://code.google.com/p/prosody-modules/wiki/mod_auth_ldap), [mod_carbons](http://code.google.com/p/prosody-modules/wiki/mod_carbons) and [mod_smacks](http://code.google.com/p/prosody-modules/wiki/mod_smacks)
 * **net-libs/libasr** (201412131641)
 * **net-misc/minidlna** (1.0.24)
