@@ -1,0 +1,71 @@
+--- a/portal-impl/src/com/liferay/portal/upgrade/v6_2_0/UpgradeJournal.java
++++ b/portal-impl/src/com/liferay/portal/upgrade/v6_2_0/UpgradeJournal.java
+@@ -127,13 +127,18 @@
+ 			parentDDMStructureId = updateStructure(parentStructureId);
+ 		}
+ 
+-		addDDMStructure(
+-			uuid_, ddmStructureId, groupId, companyId, userId, userName,
+-			createDate, modifiedDate, parentDDMStructureId,
+-			PortalUtil.getClassNameId(JournalArticle.class.getName()),
+-			ddmStructureKey, name, description, xsd,
+-			PropsValues.JOURNAL_ARTICLE_STORAGE_TYPE,
+-			DDMStructureConstants.TYPE_DEFAULT);
++		long insertedDDMStructureId = getDDMStructureId(
++			groupId, ddmStructureKey, false);
++
++		if (insertedDDMStructureId == 0) {
++			addDDMStructure(
++				uuid_, ddmStructureId, groupId, companyId, userId, userName,
++				createDate, modifiedDate, parentDDMStructureId,
++				PortalUtil.getClassNameId(JournalArticle.class.getName()),
++				ddmStructureKey, name, description, xsd,
++				PropsValues.JOURNAL_ARTICLE_STORAGE_TYPE,
++				DDMStructureConstants.TYPE_DEFAULT);
++		}
+ 	}
+ 
+ 	protected void addDDMTemplate(
+@@ -221,6 +226,12 @@
+ 	}
+ 
+ 	protected long getDDMStructureId(long groupId, String structureId) {
++		return getDDMStructureId(groupId, structureId, true);
++	}
++
++	protected long getDDMStructureId(
++		long groupId, String structureId, boolean warn) {
++
+ 		if (Validator.isNull(structureId)) {
+ 			return 0;
+ 		}
+@@ -228,10 +239,13 @@
+ 		Long ddmStructureId = _ddmStructureIds.get(groupId + "#" + structureId);
+ 
+ 		if (ddmStructureId == null) {
+-			if (_log.isWarnEnabled()) {
+-				_log.warn(
+-					"Unable to get the DDM structure ID for group " +
+-						groupId + " and journal structure ID " + structureId);
++			if (warn) {
++				if (_log.isWarnEnabled()) {
++					_log.warn(
++						"Unable to get the DDM structure ID for group " +
++							groupId + " and journal structure ID " +
++								structureId);
++				}
+ 			}
+ 
+ 			return 0;
+@@ -317,8 +331,9 @@
+ 			con = DataAccess.getUpgradeOptimizedConnection();
+ 
+ 			ps = con.prepareStatement(
+-				"select * from JournalStructure where structureId = " +
+-					structureId);
++				"select * from JournalStructure where structureId = ?");
++
++			ps.setString(1, structureId);
+ 
+ 			rs = ps.executeQuery();
+ 

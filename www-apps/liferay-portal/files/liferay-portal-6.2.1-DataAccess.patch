@@ -1,0 +1,45 @@
+diff --git a/portal-service/src/com/liferay/portal/kernel/dao/jdbc/DataAccess.java b/portal-service/src/com/liferay/portal/kernel/dao/jdbc/DataAccess.java
+index 59a1cbd..114ff73 100644
+--- a/portal-service/src/com/liferay/portal/kernel/dao/jdbc/DataAccess.java
++++ b/portal-service/src/com/liferay/portal/kernel/dao/jdbc/DataAccess.java
+@@ -55,6 +55,16 @@ public class DataAccess {
+ 	}
+ 
+ 	public static void cleanUp(Connection connection, Statement statement) {
++		try {
++			if (connection != null && !connection.getAutoCommit() && !connection.isClosed()) {
++				connection.commit();
++			}
++		} catch (SQLException sqle) {
++			if (_log.isWarnEnabled()) {
++				_log.warn(sqle.getMessage());
++			}
++		}
++
+ 		cleanUp(statement);
+ 		cleanUp(connection);
+ 	}
+@@ -62,6 +72,15 @@ public class DataAccess {
+ 	public static void cleanUp(
+ 		Connection connection, Statement statement, ResultSet resultSet) {
+ 
++		try {
++			if (connection != null && !connection.getAutoCommit() && !connection.isClosed()) {
++				connection.commit();
++			}
++		} catch (SQLException sqle) {
++			if (_log.isWarnEnabled()) {
++				_log.warn(sqle.getMessage());
++			}
++		}
+ 		cleanUp(resultSet);
+ 		cleanUp(statement);
+ 		cleanUp(connection);
+@@ -128,6 +147,7 @@ public class DataAccess {
+ 		throws SQLException {
+ 
+ 		Connection con = getConnection();
++		con.setAutoCommit(false);
+ 
+ 		Thread currentThread = Thread.currentThread();
+ 

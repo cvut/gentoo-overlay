@@ -1,0 +1,29 @@
+--- a/portal-impl/src/com/liferay/portal/verify/VerifyDynamicDataMapping.java
++++ b/portal-impl/src/com/liferay/portal/verify/VerifyDynamicDataMapping.java
+@@ -186,9 +186,15 @@
+ 			DDMStructureLocalServiceUtil.getStructures();
+ 
+ 		for (DDMStructure structure : structures) {
+-			verifyStructure(structure);
++			try {
++				verifyStructure(structure);
+ 
+-			updateFileUploadReferences(structure);
++				updateFileUploadReferences(structure);
++			} catch (Exception e) {
++				if (_log.isWarnEnabled()) {
++					_log.warn("Unable to update file upload reference", e);
++				}
++			}
+ 		}
+ 	}
+ 
+@@ -402,7 +421,7 @@
+ 		for (Field field : fields) {
+ 			String dataType = field.getDataType();
+ 
+-			if (!dataType.equals("file-upload") || (field.getValue() == null)) {
++			if (!dataType.equals("file-upload") || Validator.isNull(field.getValue())) {
+ 				continue;
+ 			}
+ 

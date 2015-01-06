@@ -5,7 +5,7 @@
 EAPI="5"
 
 # Maintainer notes:
-# - This ebuild supports Tomcat only for now.
+# - This ebuild supports Tomcat only.
 # - When running on icedtea, liferay uses libmawt.so which is linked 
 #   with libcups.so.2 from the cups package (in case of icedtea-bin at least),
 #   therefore we need icedtea with USE cups for now :( 
@@ -87,7 +87,12 @@ java_prepare() {
 	touch ${S}/server/tomcat/lib/catalina.jar
 
 	# fix ImageToolImpl to work on OpenJDK as well
-	epatch "${FILESDIR}/${P}-fix-imagetool.patch"
+	epatch "${FILESDIR}/${P}-ImageToolImpl.patch"
+	
+	# fix shitty upgrade scripts
+	epatch "${FILESDIR}/${P}-UpgradeJournal.patch"
+	epatch "${FILESDIR}/${P}-DataAccess.patch"
+	epatch "${FILESDIR}/${P}-VerifyDynamicDataMapping.patch"
 }
 
 src_install() {
