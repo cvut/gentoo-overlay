@@ -52,7 +52,7 @@ List of ebuilds
 * **net-libs/libasr** (201412131641)
 * **net-misc/minidlna** (1.0.24)
    * with improved ebuild and init script
-* **sys-auth/ssh-ldap-pubkey** (0.2.1, 0.2.2, 0.2.3)
+* **sys-auth/ssh-ldap-pubkey** (0.2.1, 0.2.2, 0.2.3, 0.3.2)
 * **www-apps/gitlabhq** (4.0.0, 6.0.2, 6.5.1)
    * with some fixes and enhacements
 * **www-apps/haste-client** (1.0, 1.0.1)
