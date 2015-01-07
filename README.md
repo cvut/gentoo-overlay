@@ -34,8 +34,6 @@ List of ebuilds
 * **dev-lua/luaexpat** (1.3.0)
 * **dev-lua/lualdap** (git)
 * **dev-python/docopt** (0.6.1)
-* **dev-ruby/bundler** (1.3.5)
-   * with `ruby_targets_ruby20` flag
 * **dev-util/activiti-bin** (5.14, 5.15.1)
 * **dev-util/sonar-bin** (3.2, 3.5, 3.7)
    * proper ebuild, much better than godin’s :)
