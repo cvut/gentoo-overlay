@@ -57,7 +57,7 @@ List of ebuilds
 * **sys-auth/ssh-ldap-pubkey** (0.2.1, 0.2.2, 0.2.3)
 * **www-apps/gitlabhq** (4.0.0, 6.0.2, 6.5.1)
    * with some fixes and enhacements
-* **www-apps/haste-client** (1.0)
+* **www-apps/haste-client** (1.0, 1.0.1)
    * [CLI Haste client](https://github.com/jirutka/haste-client) written in Python
 * **www-apps/haste-server** (0.1.0)
 * **www-apps/liferay-portal** (6.1.1, 6.1.2, 6.2.1)
