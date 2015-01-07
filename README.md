@@ -48,7 +48,7 @@ List of ebuilds
 * **net-im/openfire** (3.8.1)
 * **net-im/prosody** (0.9.4, 0.9.7)
    * with [mod_auth_ldap](https://code.google.com/p/prosody-modules/wiki/mod_auth_ldap), [mod_carbons](http://code.google.com/p/prosody-modules/wiki/mod_carbons) and [mod_smacks](http://code.google.com/p/prosody-modules/wiki/mod_smacks)
-* **net-libs/libasr** (201412131641)
+* **net-libs/libasr** (201412131641, 1.0.0)
 * **net-misc/minidlna** (1.0.24)
    * with improved ebuild and init script
 * **sys-auth/ssh-ldap-pubkey** (0.2.1, 0.2.2, 0.2.3, 0.3.2)
