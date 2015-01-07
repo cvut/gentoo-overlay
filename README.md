@@ -34,7 +34,7 @@ List of ebuilds
 * **dev-lua/luaexpat** (1.3.0)
 * **dev-lua/lualdap** (git)
 * **dev-util/activiti-bin** (5.14, 5.15.1)
-* **dev-util/sonar-bin** (3.2, 3.5, 3.7)
+* **dev-util/sonar-bin** (3.7)
    * proper ebuild, much better than godin’s :)
 * **dev-vcs/gitlab-shell** (1.7.1, 1.8.0)
 * **dev-vcs/gitolite** (3.2)
