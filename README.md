@@ -36,7 +36,7 @@ List of ebuilds
 * **dev-util/activiti-bin** (5.14, 5.15.1)
 * **dev-util/sonar-bin** (3.7)
    * proper ebuild, much better than godin’s :)
-* **dev-vcs/gitlab-shell** (1.7.1, 1.8.0)
+* **dev-vcs/gitlab-shell** (1.7.1, 1.8.0, 2.4.2)
 * **dev-vcs/gitolite** (3.2)
    * [Gitolite](https://github.com/sitaramc/gitolite) ebuild with added optional patch for GitLab (see [commits](https://github.com/gitlabhq/gitolite/commits/))
 * **mail-mta/mailcatcher** (0.5.12)
