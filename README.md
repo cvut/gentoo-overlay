@@ -51,7 +51,6 @@ List of ebuilds
 * **net-misc/minidlna** (1.0.24)
    * with improved ebuild and init script
 * **sys-auth/ssh-ldap-pubkey** (0.2.1, 0.2.2, 0.2.3, 0.3.2, 0.4.0)
-* **www-apps/gitlabhq** (4.0.0, 6.0.2, 6.5.1)
    * with some fixes and enhacements
 * **www-apps/haste-client** (1.0, 1.0.1, 1.0.2)
    * [CLI Haste client](https://github.com/jirutka/haste-client) written in Python
@@ -90,6 +89,13 @@ Then you can add this overlay wih:
 Keep the overlay up to date from Git:
 
 	layman -s cvut
+
+
+Notes
+-----
+
+We are not maintaining ebuild for GitLab anymore, its new home is in the [fritteli’s overlay](https://github.com/fritteli/gentoo-overlay).
+If you’re using Ansible, then you might be interested in [Ansible role for GitLab](https://github.com/jirutka/ansible-role-gitlab) instead.
 
 
 Maintainers
