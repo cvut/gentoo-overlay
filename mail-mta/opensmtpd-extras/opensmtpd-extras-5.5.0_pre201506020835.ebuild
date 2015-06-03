@@ -27,7 +27,7 @@ LICENSE="ISC BSD BSD-1 BSD-2 BSD-4"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-OPENSMTPD_FILTERS="dkim-signer dnsbl monkey perl python stub trace void"
+OPENSMTPD_FILTERS="clamav dkim-signer dnsbl lua monkey pause perl python regex spamassassin stub trace void"
 OPENSMTPD_QUEUES="null python ram stub"
 OPENSMTPD_SCHEDULERS="python ram stub"
 OPENSMTPD_TABLES="ldap mysql passwd postgres python redis socketmap sqlite stub"
@@ -53,6 +53,7 @@ done
 IUSE="pam ${OPENSMTPD_MODULES_USE[@]}"
 
 DEPEND=">=mail-mta/opensmtpd-5.5
+		filter-lua? ( dev-lang/lua )
 		filter-python? ( $PYTHON_DEPS )
 		filter-perl? ( dev-lang/perl )
 		queue-python? ( $PYTHON_DEPS )
