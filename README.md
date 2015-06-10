@@ -33,6 +33,7 @@ List of ebuilds
    * dependency for shibboleth-sp
 * **dev-lua/luaexpat** (1.3.0)
 * **dev-lua/lualdap** (git)
+* **dev-lua/lua-resty-http** (0.05)
 * **dev-util/activiti-bin** (5.14, 5.15.1)
 * **dev-util/sonar-bin** (3.7)
    * proper ebuild, much better than godin’s :)
