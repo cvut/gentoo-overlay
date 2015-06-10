@@ -29,7 +29,8 @@ src_install() {
     local lua=lua
     use luajit && lua=luajit
     local pkgconfig=$(tc-getPKG_CONFIG)
+	local lmod=$($pkgconfig --variable INSTALL_LMOD $lua) || die
 
-	insinto "$($pkgconfig --variable INSTALL_LMOD lua)/resty"
+	insinto $lmod/resty
 	doins lib/resty/*.lua
 }
