@@ -20,8 +20,8 @@ KEYWORDS="amd64 x86"
 IUSE=""
 MERGE_TYPE="binary"
 
-RDEPEND=">=virtual/jre-1.6"
-DEPEND=">=virtual/jdk-1.6"
+RDEPEND=">=virtual/jre-1.8"
+DEPEND=">=virtual/jdk-1.8"
 
 S="${WORKDIR}"
 
