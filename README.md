@@ -38,8 +38,6 @@ List of ebuilds
 * **dev-util/sonar-bin** (3.7)
    * proper ebuild, much better than godin’s :)
 * **dev-vcs/gitlab-shell** (1.7.1, 1.8.0, 2.4.2)
-* **dev-vcs/gitolite** (3.2)
-   * [Gitolite](https://github.com/sitaramc/gitolite) ebuild with added optional patch for GitLab (see [commits](https://github.com/gitlabhq/gitolite/commits/))
 * **mail-mta/mailcatcher** (0.5.12)
    * [mailcatcher](https://github.com/sj26/mailcatcher) with [persist patch](https://github.com/sj26/mailcatcher/pull/109) and removed exit button, intended for a standalone usage, init script included
 * **mail-mta/opensmtpd**
