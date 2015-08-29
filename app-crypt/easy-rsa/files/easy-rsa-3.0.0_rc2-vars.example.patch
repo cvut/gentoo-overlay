@@ -1,0 +1,34 @@
+diff --git a/easyrsa3/vars.example b/easyrsa3/vars.example
+index c5bc39e..a490b6a 100644
+--- a/easyrsa3/vars.example
++++ b/easyrsa3/vars.example
+@@ -42,27 +42,20 @@ fi
+ # This variable should point to the top level of the easy-rsa tree. By default,
+ # this is taken to be the directory you are currently in.
+ 
+-#set_var EASYRSA	"$PWD"
++set_var EASYRSA	"/usr/share/easy-rsa-3"
+ 
+ # If your OpenSSL command is not in the system PATH, you will need to define the
+ # path to it here. Normally this means a full path to the executable, otherwise
+ # you could have left it undefined here and the shown default would be used.
+-#
+-# Windows users, remember to use paths with forward-slashes (or escaped
+-# back-slashes.) Windows users should declare the full path to the openssl
+-# binary here if it is not in their system PATH.
+ 
+ #set_var EASYRSA_OPENSSL	"openssl"
+-#
+-# This sample is in Windows syntax -- edit it for your path if not using PATH:
+-#set_var EASYRSA_OPENSSL	"C:/Program Files/OpenSSL-Win32/bin/openssl.exe"
+ 
+ # Edit this variable to point to your soon-to-be-created key directory.
+ #
+ # WARNING: init-pki will do a rm -rf on this directory so make sure you define
+ # it correctly! (Interactive mode will prompt before acting.)
+ 
+-#set_var EASYRSA_PKI		"$EASYRSA/pki"
++set_var EASYRSA_PKI		"${PWD}/pki"
+ 
+ # Define X509 DN mode.
+ # This is used to adjust what elements are included in the Subject field as the DN

@@ -1,0 +1,33 @@
+From a8e804c9fbb4e2984e986926ee8c9c3c49899c84 Mon Sep 17 00:00:00 2001
+From: Jakub Jirutka <jakub@jirutka.cz>
+Date: Tue, 3 Jun 2014 01:38:04 +0200
+Subject: [PATCH] Locate vars in the working directory
+
+---
+ easyrsa3/easyrsa | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/easyrsa3/easyrsa b/easyrsa3/easyrsa
+index 270bc8c..18d6f40 100755
+--- a/easyrsa3/easyrsa
++++ b/easyrsa3/easyrsa
+@@ -966,6 +966,9 @@ vars_setup() {
+ 	# set up program path
+ 	local prog_vars="${0%/*}/vars"
+ 
++	# set up working directory
++	local wd_vars="$(pwd)/vars"
++
+ 	# command-line path:
+ 	if [ -f "$EASYRSA_VARS_FILE" ]; then
+ 		vars="$EASYRSA_VARS_FILE"
+@@ -978,6 +981,9 @@ vars_setup() {
+ 	# program location:
+ 	elif [ -f "$prog_vars" ]; then
+ 		vars="$prog_vars"
++	# working directory:
++	elif [ -f "$wd_vars" ]; then
++		vars="$wd_vars"
+ 	fi
+ 	
+ 	# If a vars file was located, source it
