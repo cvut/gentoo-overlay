@@ -71,25 +71,36 @@ List of ebuilds
 Feel free to contribute!
 
 
-Using with Layman
------------------
+Usage
+-----
 
-Use layman to easily install and update overlays over time.
+Note: Starting with sys-apps/portage-2.2.16, Portage now has a new modular plug-in [sync system](https://wiki.gentoo.org/wiki/Project:Portage/Sync).
+This makes Layman and other similar tools unnecessary for managing overlays like this one.
 
-If you haven’t used layman yet, just run these commands:
+1. Prepare location for the overlay, e.g. `/usr/local/portage/cvut`:
 
-	USE=git emerge -va layman
-	echo PORTDIR_OVERLAY=\"\" > /var/lib/layman/make.conf
-	echo "source /var/lib/layman/make.conf" >> /etc/make.conf
+   ```sh
+   mkdir -p /usr/local/portage/cvut
+   ```
 
+2. Create file `/etc/portage/repos.conf/cvut.conf`:
 
-Then you can add this overlay wih:
+   ```ini
+   [cvut]
+   location = /usr/local/portage/cvut
+   sync-type = git
+   sync-uri = git://github.com/cvut/gentoo-overlay
+   auto-sync = yes
+   ```
 
-	layman -o https://raw.github.com/cvut/gentoo-overlay/master/overlay.xml -f -a cvut
+3. Synchronize repository:
 
-Keep the overlay up to date from Git:
+   ```sh
+   emerge --sync cvut
+   eix-update  # run only if you use eix
+   ```
 
-	layman -s cvut
+Overlay will be automatically synchronized when running `emerge --sync` or `eix-sync`.
 
 
 Notes
