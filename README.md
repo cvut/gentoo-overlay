@@ -25,8 +25,6 @@ List of ebuilds
 * **dev-java/jdbc-oracle-bin** (12.1)
 * **dev-java/maven-bin** (3.2.3)
 * **dev-java/rhino** (1.7R4)
-* **dev-lang/ruby** (1.9.3\_p194, 1.9.3\_p286)
-   * with [“Falcon”](https://gist.github.com/4136519) performance patches and backported COW-friendly GC
 * **dev-libs/opensaml** (2.4.3)
    * dependency for shibboleth-sp
 * **dev-libs/xmltooling-c** (1.4.2)
