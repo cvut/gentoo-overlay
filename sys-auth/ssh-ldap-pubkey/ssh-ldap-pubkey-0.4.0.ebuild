@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=5
 
@@ -42,9 +42,9 @@ src_install() {
 }
 
 pkg_postinst() {
-	einfo "To configure sshd to fetch user authorized keys from LDAP server add this"
-	einfo "to /etc/ssh/sshd_config:"
-	einfo "    AuthorizedKeysCommand /usr/bin/ssh-ldap-pubkey-wrapper"
-	einfo "    AuthorizedKeysCommandUser nobody"
-	einfo
+	elog "To configure sshd to fetch user authorized keys from LDAP server add this"
+	elog "to /etc/ssh/sshd_config:"
+	elog "    AuthorizedKeysCommand /usr/bin/ssh-ldap-pubkey-wrapper"
+	elog "    AuthorizedKeysCommandUser nobody"
+	elog
 }
