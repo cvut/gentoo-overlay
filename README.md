@@ -47,6 +47,8 @@ List of ebuilds
    * with [mod_auth_ldap](https://code.google.com/p/prosody-modules/wiki/mod_auth_ldap), [mod_carbons](http://code.google.com/p/prosody-modules/wiki/mod_carbons) and [mod_smacks](http://code.google.com/p/prosody-modules/wiki/mod_smacks)
 * **net-misc/minidlna** (1.0.24)
    * with improved ebuild and init script
+* **sys-apps/shadow** (4.2.1)
+   * with patch [884895a](https://github.com/shadow-maint/shadow/commit/884895ae25f4e684b8ca75ac03e775370f43a63d)
 * **sys-auth/ssh-ldap-pubkey** (0.2.1, 0.2.2, 0.2.3, 0.3.2, 0.4.0)
    * with some fixes and enhacements
 * **www-apps/haste-client** (1.0, 1.0.1, 1.0.2)
