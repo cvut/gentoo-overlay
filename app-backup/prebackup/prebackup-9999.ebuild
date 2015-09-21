@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=5
 
@@ -8,7 +8,7 @@ EGIT_REPO_URI="https://github.com/jirutka/prebackup.git"
 
 inherit git-2
 
-DESCRIPTION=""
+DESCRIPTION="Pre/post backup scripts."
 HOMEPAGE="https://github.com/jirutka/prebackup"
 
 LICENSE="MIT"
@@ -17,7 +17,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=""
-RDEPEND="app-shells/bash"
+RDEPEND=">=app-shells/bash-4.0"
 
 src_prepare() {
 	sed -i -e 's|#!/usr/local/bin/prebackup|#!/usr/bin/prebackup|' lib/* || die
