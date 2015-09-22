@@ -7,7 +7,7 @@ Gentoo overlay with some ebuilds created or modified on [CTU](http://www.cvut.cz
 List of ebuilds
 ---------------
 
-* **app-backup/prebackup** (0.1.0, 0.2.0, 0.3.0)
+* **app-backup/prebackup** (0.1.0, 0.2.0, 0.3.0, 0.4.0)
 * **app-crypt/easy-rsa** (2.2.0, 3.0.0\_rc2)
    * 2.2.0 with patch for [subjectAltName](http://www.msquared.id.au/articles/easy-rsa-subjectaltname/)
 * **app-emulation/lxc** (1.0.7, 1.1.3)
