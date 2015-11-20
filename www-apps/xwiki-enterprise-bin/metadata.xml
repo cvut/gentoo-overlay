@@ -5,13 +5,15 @@
 		<email>jakub@jirutka.cz</email>
 		<name>Jakub Jirutka</name>
 	</maintainer>
-	<flag name="jndi">
-		Configure database via JNDI DataSource
-	</flag>
-	<flag name="short-urls">
-		Apply patch for short URLs (see http://platform.xwiki.org/xwiki/bin/view/AdminGuide/InstallationTomcat)
-	</flag>
-	<flag name="tomcat">
-		Deploy to Tomcat servlet container (creates separate Tomcat instance)
-	</flag>
+	<use>
+		<flag name="jndi">
+			Configure database via JNDI DataSource
+		</flag>
+		<flag name="short-urls">
+			Apply patch for short URLs (see http://platform.xwiki.org/xwiki/bin/view/AdminGuide/InstallationTomcat)
+		</flag>
+		<flag name="tomcat">
+			Deploy to Tomcat servlet container (creates separate Tomcat instance)
+		</flag>
+	</use>
 </pkgmetadata>
