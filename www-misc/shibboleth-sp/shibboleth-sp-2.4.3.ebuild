@@ -15,7 +15,7 @@ DESCRIPTION="Shibboleth is a federated web authentication and attribute exchange
 HOMEPAGE="http://shibboleth.internet2.edu/"
 SRC_URI="http://shibboleth.net/downloads/service-provider/${PV}/${P}.tar.gz"
 
-LICENSE="Apache 2.0"
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="apache2 debug doc +fastcgi"
