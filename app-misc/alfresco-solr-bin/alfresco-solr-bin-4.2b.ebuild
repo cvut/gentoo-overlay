@@ -113,7 +113,7 @@ src_install() {
 		-e "s|@LOG_DIR@|${logs}|" \
 		"${T}/${tfile}" \
 		|| die "failed to filter ${tfile}"
-	
+
 	doins "${T}/${tfile}"
 
 	## filter and install solr-context.xml ##

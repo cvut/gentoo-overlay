@@ -36,10 +36,10 @@ all_ruby_prepare() {
 	sed -i \
 		-e "s/\(mailcatcher \)([0-9\.]*)/\1(${PV})/" \
 		Gemfile.lock || die "failed to filter Gemfile.lock"
-	
+
 	local file; for file in ${FILESDIR}/{mailcatcher,catchmail}; do
 		sed "s|@BASE_PATH@|${DEST_DIR}|" ${file} > ${T}/$(basename $file) \
-			|| die "failed to filter ${file}"	
+			|| die "failed to filter ${file}"
 	done
 
 	# remove useless files

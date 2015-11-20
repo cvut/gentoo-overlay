@@ -79,11 +79,11 @@ src_install() {
 	else
 		cp samples/misc/repo.jdbc.json conf/repo.jdbc.json.example
 	fi
-	
+
 	sed -i \
 		-e "s|logs/openidm.log|${LOGS_DIR}/openidm.log|" \
 		conf/logging-config.xml || die "failed to filter logging-config.xml"
-	
+
 	sed -i \
 		-e "s|logs/openidm%u.log|${LOGS_DIR}/openidm%u.log|" \
 		conf/logging.properties || die "failed to filter logging.properties"

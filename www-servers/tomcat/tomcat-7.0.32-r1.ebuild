@@ -41,8 +41,8 @@ COMMON_DEP="
 	dev-java/eclipse-ecj:${ECJ_SLOT}
 	~dev-java/tomcat-servlet-api-${PV}
 	extra-webapps? ( dev-java/jakarta-jstl:0 )
-	log4j? ( 
-		>=dev-java/log4j-1.2.12 
+	log4j? (
+		>=dev-java/log4j-1.2.12
 		>=dev-java/avalon-framework-4.1.3
 		>=dev-java/avalon-logkit-1.0.1 )"
 RDEPEND="${COMMON_DEP}
@@ -68,7 +68,7 @@ java_prepare() {
 	find -name '*.jar' -exec rm -v {} + || die
 	epatch "${FILESDIR}/${P}-build.xml.patch"
 
-	# add system property 'catalina.webxml.default' to customize location 
+	# add system property 'catalina.webxml.default' to customize location
 	# of the global web.xml
 	epatch "${FILESDIR}/tomcat-7.0.32-ContextConfig.java-webxml.patch"
 
@@ -76,7 +76,7 @@ java_prepare() {
 	sed -i -e "/^# ----- Execute The Requested Command/ a\
 		CLASSPATH=\`java-config --classpath ${PN}-${SLOT}\`" \
 		bin/catalina.sh || die
-	
+
 	if use log4j; then
 		# do not try to download commons-logging
 		epatch "${FILESDIR}/${P}-build.xml-commons-logging.patch"
@@ -86,7 +86,7 @@ java_prepare() {
 		mkdir -p "${EXTRAS_COMMONS_LOGGING_WD}"
 		mv -T "${WORKDIR}/${EXTRAS_COMMONS_LOGGING_P}-src" \
 			"${EXTRAS_COMMONS_LOGGING_WD}"
-		
+
 		# override libs auto-discovery
 		cat >> "${EXTRAS_COMMONS_LOGGING_WD}"/build.properties <<-EOF
 			jdk.1.4.present=true
@@ -213,7 +213,7 @@ src_install() {
 
 pkg_postinst() {
 	elog "This package provides script for quick and easy creating and removing"
-	elog "of Tomcat instances. Before you can run Tomcat server you must create" 
+	elog "of Tomcat instances. Before you can run Tomcat server you must create"
 	elog "at least one instance. Use command:"
 	elog "    tomcat-instances help"
 	elog "for more information.\n"

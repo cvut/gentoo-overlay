@@ -6,11 +6,11 @@ EAPI=4
 
 # Maintainer notes:
 # - Most users doesn't need JavaMail and JMS support in avalon-logkit. These
-#   jars are necessary only for compile, not in runtime, so we can make them 
+#   jars are necessary only for compile, not in runtime, so we can make them
 #   optional. All what we need are just "stubs" to fulfill dependencies for
 #   compiler. I used these spec jars from the Geronimo project. I didn't make
-#   ebuild for them and compile from sources because it would bring more 
-#   problems than benefits and it's really unnecessary. They're used only for 
+#   ebuild for them and compile from sources because it would bring more
+#   problems than benefits and it's really unnecessary. They're used only for
 #   compiler, not bundled with the compiled avalon-logkit jar.
 #
 # - Tarball from mirrors was corrupted so I used direct link to
@@ -79,7 +79,7 @@ java_prepare() {
 
 	java-pkg_filter-compiler jikes
 
-	# copy "stubs" to target/lib so compiler can find them, but only if 
+	# copy "stubs" to target/lib so compiler can find them, but only if
 	# real implementations are not required by USE flags
 	local libs="${S}/target/lib"
 	if ! use javamail; then

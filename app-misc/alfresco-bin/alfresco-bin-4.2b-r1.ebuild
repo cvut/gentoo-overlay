@@ -28,9 +28,9 @@ DEPEND=""
 RDEPEND="
 	postgres? ( dev-java/jdbc-postgresql )
 	imagemagick? ( media-gfx/imagemagick[jpeg,png,postscript,truetype] )
-	ooodirect? ( 
-		|| ( app-office/libreoffice 
-			app-office/libreoffice-bin 
+	ooodirect? (
+		|| ( app-office/libreoffice
+			app-office/libreoffice-bin
 			app-office/openoffice-bin ) )"
 
 MERGE_TYPE="binary"
@@ -118,7 +118,7 @@ src_install() {
 		${T}/${tfile} || die "failed to filter ${tfile}"
 
 	doconf ${T}/${tfile}
-	
+
 	# Copy configs
 
 	doconf ${FILESDIR}/server.xml
@@ -195,7 +195,7 @@ pkg_postinst() {
 		elog "    createdb -E UTF-8 -O alfresco alfresco"
 		elog "Note: You should change your password to something more random..."
 	else
-		ewarn "Since you have not set any database USE flag, you need to install" 
+		ewarn "Since you have not set any database USE flag, you need to install"
 		ewarn "an appropriate JDBC driver and add it to tomcat_extra_jars in"
 		ewarn "'/etc/init.d/${TOMCAT_INSTANCE}'. Then you must edit"
 		ewarn "'${TOMCAT_CONF}/alfresco-context.xml' and change driverClassName,"
@@ -204,7 +204,7 @@ pkg_postinst() {
 
 	elog
     elog "Keystores in ${TOMCAT_CONF}/keystore was populated with"
-    elog "default certificates provided by Alfresco, Ltd. If you are going to" 
+    elog "default certificates provided by Alfresco, Ltd. If you are going to"
 	elog "use SOLR, in production environment, you should generate your own"
 	elog "certificates and keystores. You can use provided script:"
 	elog "    ${TOMCAT_BASE}/bin/generate_keystores.sh"

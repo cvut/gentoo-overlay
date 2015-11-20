@@ -13,7 +13,7 @@ MY_PN="xwiki-enterprise"
 MY_PV="${PV/_pre/-milestone-}"
 MY_P="${MY_PN}-web-${MY_PV}"
 
-DESCRIPTION="Professional wiki that has powerful extensibility features such 
+DESCRIPTION="Professional wiki that has powerful extensibility features such
 			as scripting in pages, plugins and a highly modular architecture."
 HOMEPAGE="http://www.xwiki.org/"
 SRC_URI="http://download.forge.objectweb.org/xwiki/${MY_P}.war"
@@ -54,14 +54,14 @@ src_prepare() {
 		-e "s|^[# ]*\(xwiki.authentication.validationKey=\).*|\1${randpw1}|" \
 		-e "s|^[# ]*\(xwiki.authentication.encryptionKey=\).*|\1${randpw2}|" \
 		WEB-INF/xwiki.cfg || die "failed to filter xwiki.cfg"
-	
+
 	# fix problem with cookie validation mismatch when behind proxy
 	sed -i \
 		-e "/xwiki.authentication.unauthorized_code/ a\ \
 		\n#-# Disable binding cookie to remote IP address (which does not work properly with proxy)\
 		\nxwiki.authentication.useip=false" \
 		WEB-INF/xwiki.cfg || die "failed to filter xwiki.cfg"
-	
+
 	if use short-urls; then
 		sed -i \
 			-e "s|^[# ]*\(xwiki.defaultservletpath=\).*|\1|" \
@@ -135,9 +135,9 @@ pkg_postinst() {
 		elog "    createdb -E UTF-8 -O xwiki xwiki"
 		elog "Note: You should change your password to something more random..."
 	else
-		ewarn "Since you have not set any database USE flag, you need to install" 
+		ewarn "Since you have not set any database USE flag, you need to install"
 		ewarn "an appropriate JDBC driver and add it to tomcat_extra_jars in"
-		ewarn "'/etc/init.d/${TOMCAT_INSTANCE}'. Then you must edit" 
+		ewarn "'/etc/init.d/${TOMCAT_INSTANCE}'. Then you must edit"
 		ewarn "'${CONF_DIR}/hibernate.cfg.xml'"
 		if use jndi; then
 			ewarn "and '${CONF_DIR}/xwiki-context.xml' as well."
@@ -153,5 +153,5 @@ pkg_postinst() {
 
 	elog
 	elog "If this is a new installation then use login 'Admin' with"
-	elog "password 'admin' to login into your fresh XWiki." 
+	elog "password 'admin' to login into your fresh XWiki."
 }

@@ -80,7 +80,7 @@ src_install() {
 
 	# deploy to URI /
 	newwar webapps/artifactory.war ROOT.war
-	
+
 	# repository configs
 	confinto repo; confopts -m640
 	if use postgres; then
@@ -111,7 +111,7 @@ pkg_postinst() {
 	ewarn "Cleaning ${TOMCAT_BASE}/work ..."
 	rm -Rf "${TOMCAT_BASE}"/work/* 2>/dev/null
 
-	elog "Artifactory uses SQL database to store metadata and file system" 
+	elog "Artifactory uses SQL database to store metadata and file system"
 	elog "storage for binary files. These will be stored in"
 	elog "'${TOMCAT_BASE}', ensure that there is enough space."
 	elog

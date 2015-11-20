@@ -6,8 +6,8 @@ EAPI="5"
 
 # Mainteiner notes
 # - Shaj binary was removed as it's not used by default and needs additional
-#   JAR not bundled with OpenFire anyway. If you need it, please write ebuild 
-#   for shaj library. You can use repository https://github.com/jirutka/shaj 
+#   JAR not bundled with OpenFire anyway. If you need it, please write ebuild
+#   for shaj library. You can use repository https://github.com/jirutka/shaj
 #   which is copied from the Atlassian's SVN. Note that shaj is very old and
 #   not maintained for years!
 

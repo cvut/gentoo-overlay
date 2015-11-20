@@ -6,7 +6,7 @@ EAPI="5"
 
 # Mainteiner notes:
 # - This ebuild uses npm (Node Packaged Modules) to download and install all
-#   dependencies into isolated directory inside application. That's not Gentoo 
+#   dependencies into isolated directory inside application. That's not Gentoo
 #   way how it should be done, but there's no support for Node.js packages on
 #   Gentoo yet.
 #
@@ -54,7 +54,7 @@ src_install() {
 
 	diropts -m755
 	keepdir ${conf}
-	dodir ${dest} 
+	dodir ${dest}
 
 	## Install ##
 

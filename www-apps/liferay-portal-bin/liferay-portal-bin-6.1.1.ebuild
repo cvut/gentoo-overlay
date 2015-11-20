@@ -5,7 +5,7 @@
 EAPI="4"
 
 # Maintainer notes:
-# - When running on icedtea, liferay uses libmawt.so which is linked 
+# - When running on icedtea, liferay uses libmawt.so which is linked
 #   with libcups.so.2 from the cups package (in case of icedtea-bin at least),
 #   therefore we need icedtea with USE cups for now :(
 
@@ -93,7 +93,7 @@ src_install() {
 		-e "s|@LOG_DIR@|${logs}|" \
 		"${T}/${tfile}" \
 		|| die "failed to filter ${tfile}"
-	
+
 	doins "${T}/${tfile}"
 
 	## install tomcat-logging.properties ##
@@ -121,7 +121,7 @@ src_install() {
 		-e "s|@DB_URL@|${db_url}|" \
 		-e "s|@DB_TEST_QUERY@|${db_test_query}|" \
 		"${T}/${tfile}" || die "failed to filter ${tfile}"
-	
+
 	insinto "${conf}"/Catalina/localhost
 	newins "${T}/${tfile}" ROOT.xml
 
@@ -166,7 +166,7 @@ src_install() {
 		-e "s|@CONF_DIR@|${conf}|" \
 		"${T}/${tfile}" \
 		|| die "failed to filter ${tfile}"
-	
+
 	insinto "${conf}"
 	doins "${T}/${tfile}"
 	dosym "${conf}/${tfile}" "${dest}/${tfile}"
@@ -220,7 +220,7 @@ pkg_postinst() {
 		elog "    createdb -E UTF-8 -O liferay liferay"
 		elog "Note: You should change your password to something more random..."
 	else
-		ewarn "Since you have not set any database USE flag, you need to install" 
+		ewarn "Since you have not set any database USE flag, you need to install"
 		ewarn "an appropriate JDBC driver and add it to TOMCAT_EXTRA_JARS in"
 		ewarn "'/etc/conf.d/${MY_NAME}'."
 		ewarn

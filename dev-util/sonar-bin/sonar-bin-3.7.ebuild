@@ -56,7 +56,7 @@ src_prepare() {
 		-e "s|^\(wrapper.java.library.path.1=\).*|\1${CLIB_DIR}|" \
 		-e "s|^\(wrapper.logfile=\).*|\1${LOGS_DIR}/wrapper.log|" conf/wrapper.conf \
 		|| die "Failed to change file locations in wrapper.conf"
-	
+
 	# add wrapper.syslog.ident property
 	sed -i -e "/wrapper.syslog.loglevel/a \
 		\\\n# Specifiy the identity field used in syslog entries \
@@ -68,13 +68,13 @@ src_prepare() {
 		-e '/Wrapper Windows Properties/N;//,/^#\*\*/d' \
 		-e '/Wrapper Windows NT/N;//,/^#\*\*/d' conf/wrapper.conf \
 		|| die "Failed to remove useless config sections in wrapper.conf"
-	
+
 	# change config files location
 	for dir in bin/linux* ; do
 		sed -i -e "s|^\(WRAPPER_CONF=\).*|\1${CONF_DIR}/wrapper.conf|" "$dir/sonar.sh" \
 			|| die "Failed to change config files location in sonar.sh"
 	done
-	
+
 	# change log files location
 	sed -i \
 		-e "/<configuration.*/a \
@@ -139,7 +139,7 @@ src_install() {
 
 pkg_postinst() {
 	einfo "The embedded database H2 is used by default. However, it is"
-	einfo "recommended for tests only, for production environment you must" 
+	einfo "recommended for tests only, for production environment you must"
 	einfo "use an external database like PostgreSQL.\n"
 	einfo "Sonar with embedded Jetty is listening on port 9000 by default.\n"
 	einfo "You can configure all these settings in:"

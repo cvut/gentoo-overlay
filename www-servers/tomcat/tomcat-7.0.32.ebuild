@@ -50,7 +50,7 @@ java_prepare() {
 	find -name '*.jar' -exec rm -v {} + || die
 	epatch "${FILESDIR}/${P}-build.xml.patch"
 
-	# add system property 'catalina.webxml.default' to customize location 
+	# add system property 'catalina.webxml.default' to customize location
 	# of the global web.xml
 	epatch "${FILESDIR}/tomcat-7.0.32-ContextConfig.java-webxml.patch"
 
@@ -160,7 +160,7 @@ src_install() {
 
 pkg_postinst() {
 	elog "This package provides script for quick and easy creating and removing"
-	elog "of Tomcat instances. Before you can run Tomcat server you must create" 
+	elog "of Tomcat instances. Before you can run Tomcat server you must create"
 	elog "at least one instance. Use command:"
 	elog "    tomcat-instances help"
 	elog "for more information.\n"

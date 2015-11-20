@@ -6,9 +6,9 @@
 # @MAINTAINER: jakub@jirutka.cz
 # @BLURB: An eclass for installing Java applications under Tomcat container.
 # @DESCRIPTION:
-# This eclass is designed to simplify writing of ebuilds for Java applications 
-# that runs under Tomcat as the servlet container. The package is installed 
-# under separate instance of Tomcat, i.e. Tomcat itself is shared between many 
+# This eclass is designed to simplify writing of ebuilds for Java applications
+# that runs under Tomcat as the servlet container. The package is installed
+# under separate instance of Tomcat, i.e. Tomcat itself is shared between many
 # instances (see ${TOMCAT_HOME}) but every application has its own instance
 # (see ${TOMCAT_BASE}).
 
@@ -51,8 +51,8 @@ inherit user
 
 # @ECLASS-VARIABLE: TOMCAT_USER
 # @DEFAULT: tomcat
-# @DESCRIPTION: 
-# User that will be owner of the webapp's files and will run the Tomcat 
+# @DESCRIPTION:
+# User that will be owner of the webapp's files and will run the Tomcat
 # instance. It will be created if no exists yet.
 
 # @ECLASS-VARIABLE: TOMCAT_GROUP
@@ -61,12 +61,12 @@ inherit user
 
 # @ECLASS-VARIABLE: TOMCAT_EXPAND_WAR
 # @DEFAULT: yes
-# @DESCRIPTION: 
+# @DESCRIPTION:
 # If set to 'yes' then deployed WARs will be unpacked.
 
 # @ECLASS-VARIABLE: TOMCAT_COPY_DEFAULT_CONFS
 # @DEFAULT: yes
-# @DESCRIPTION: 
+# @DESCRIPTION:
 # If set to 'yes' then 'tomcat_prepare' function will copy default config files
 # for Tomcat; server.xml and web.xml.
 
@@ -152,9 +152,9 @@ dowar() {
 # @FUNCTION: newwar
 # @USAGE: newwar <file|dir> <new name>
 # @DESCRIPTION:
-# Installs WAR file or directory (expanded WAR) into ${TOMCAT_WEBAPPS} under 
+# Installs WAR file or directory (expanded WAR) into ${TOMCAT_WEBAPPS} under
 # the new name. If 'TOMCAT_EXPAND_WAR' is 'yes' then it also unpacks WAR file/s.
-# Installed files will be owned by ${TOMCAT_USER}:${TOMCAT_GROUP} 
+# Installed files will be owned by ${TOMCAT_USER}:${TOMCAT_GROUP}
 # with chmod 755/644.
 #------------------------------------------------------------------------------
 newwar() {
@@ -167,7 +167,7 @@ newwar() {
 
 	local dest_name="${2}"
 	[[ -z ${dest_name} ]] && die "must specify a target war or dir name"
-	
+
 	# strip suffix of the destination name if WAR expansion is enabled
 	[[ ${TOMCAT_EXPAND_WAR} = 'yes' ]] && dest_name="${dest_name%.*}"
 	local dest_path="${D}/${TOMCAT_WEBAPPS}/${dest_name}"
@@ -199,12 +199,12 @@ newwar() {
 # @FUNCTION: confinto
 # @USAGE: confinto [path]
 # @DESCRIPTION:
-# Changes install location for doconf and newconf. The path may be absolute or 
+# Changes install location for doconf and newconf. The path may be absolute or
 # relative to ${TOMCAT_CONF}.
 #------------------------------------------------------------------------------
 confinto() {
 	debug-print-function ${FUNCNAME} $*
-	
+
 	# is path absolute?
 	if [[ ${1} == /* ]]; then
 		TOMCAT_CONFDEST="${1}"
@@ -221,7 +221,7 @@ confinto() {
 #------------------------------------------------------------------------------
 confopts() {
 	debug-print-function ${FUNCNAME} $*
-	
+
 	TOMCAT_CONFOPTS="${1}"
 }
 
@@ -258,7 +258,7 @@ newconf() {
 
 	local new_conf="${2}"
 	[[ -z ${new_conf} ]] && die "must specify new config file name"
-	
+
 	INSOPTIONS="${TOMCAT_CONFOPTS}" \
 		INSDESTTREE="${TOMCAT_CONFDEST}" \
 		newins ${original_conf} ${new_conf}
@@ -344,13 +344,13 @@ tomcat_pkg_preinst() {
 #------------------------------------------------------------------------------
 # @FUNCTION: tomcat_pkg_postinst
 # @DESCRIPTION:
-# Function that overrides pkg_postinst and prints elog message about how to 
+# Function that overrides pkg_postinst and prints elog message about how to
 # change ports and tune JVM parameters.
 #------------------------------------------------------------------------------
 tomcat_pkg_postinst() {
 	elog
-	elog "A separate instance of Tomcat ${TOMCAT_SLOT} servlet container was created" \ 
-	elog "for ${PN}. Check ${TOMCAT_CONF}/server.xml and change a server" 
+	elog "A separate instance of Tomcat ${TOMCAT_SLOT} servlet container was created" \
+	elog "for ${PN}. Check ${TOMCAT_CONF}/server.xml and change a server"
 	elog "and connector port if default ones are not suitable for you."
 	elog "You might also want to tune memory parameters for JVM in"
 	elog "/etc/conf.d/${TOMCAT_INSTANCE}."

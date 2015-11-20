@@ -7,7 +7,7 @@ EAPI="2"
 # - This ebuild supports only "standalone mode". If you want to use JBoss AS in
 #   "domain mode", please fix this ebuild yourself and send me a pull request.
 
-DESCRIPTION="JBoss Application Server ${PV} (standalone only)" 
+DESCRIPTION="JBoss Application Server ${PV} (standalone only)"
 
 inherit eutils user
 
@@ -110,6 +110,6 @@ src_install() {
 
 pkg_postinst() {
 	ewarn "This ebuild supports only \"standalone mode\". If you want to use"
-	ewarn "JBoss AS in \"domain mode\", please fix this ebuild yourself and send" 
+	ewarn "JBoss AS in \"domain mode\", please fix this ebuild yourself and send"
 	ewarn "me a pull request."
 }

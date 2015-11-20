@@ -40,7 +40,7 @@ src_unpack() {
 	cd ${S}
 
 	unzip -qd activiti-explorer wars/activiti-explorer.war
-	unzip -qd activiti-rest wars/activiti-rest.war	
+	unzip -qd activiti-rest wars/activiti-rest.war
 }
 
 src_prepare() {
