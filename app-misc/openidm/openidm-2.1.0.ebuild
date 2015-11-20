@@ -10,7 +10,7 @@ DESCRIPTION="Open source identity management system written in the Java."
 HOMEPAGE="http://openidm.forgerock.org"
 ESVN_REPO_URI="https://svn.forgerock.org/${PN}/tags/${PV}"
 
-LICENSE="CDDL-1.0"
+LICENSE="CDDL"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="+mysql examples test"
