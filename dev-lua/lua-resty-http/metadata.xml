@@ -5,4 +5,8 @@
 		<email>jakub@jirutka.cz</email>
 		<name>Jakub Jirutka</name>
 	</maintainer>
+	<use>
+		<flag name="luajit">Use <pkg>dev-lang/luajit</pkg> instead of
+			<pkg>dev-lang/lua</pkg></flag>
+	</use>
 </pkgmetadata>
