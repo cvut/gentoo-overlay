@@ -74,7 +74,19 @@ Feel free to contribute!
 Usage
 -----
 
-Note: Starting with sys-apps/portage-2.2.16, Portage now has a new modular plug-in [sync system](https://wiki.gentoo.org/wiki/Project:Portage/Sync).
+### Layman
+
+This overlay is on the [Gentoo Overlays](https://overlays.gentoo.org/) list, so you can easily add it to your system using [Layman](https://wiki.gentoo.org/wiki/Layman):
+
+```sh
+layman -a cvut
+```
+
+To synchronize it, run: `layman -s cvut`.
+
+### Portage
+
+Starting with sys-apps/portage-2.2.16, Portage now has a new modular plug-in [sync system](https://wiki.gentoo.org/wiki/Project:Portage/Sync).
 This makes Layman and other similar tools unnecessary for managing overlays like this one.
 
 1. Prepare location for the overlay, e.g. `/usr/local/portage/cvut`:
