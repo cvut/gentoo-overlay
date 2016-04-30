@@ -20,14 +20,5 @@ DEPEND=""
 CONFIG_CHECK="~ATA_PIIX ~ISO9660_FS"
 
 src_install() {
-	local scripts_dir="/usr/share/one-context/scripts"
-
-	insinto $scripts_dir
-	doins scripts/*.sh
-
-	rm scripts/*.sh
-	exeinto $scripts_dir
-	doexe scripts/*
-
-	doinitd init.d/vmcontext
+	PREFIX="/usr" DESTDIR="${D}" ./install
 }
