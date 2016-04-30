@@ -17,7 +17,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=""
-CONFIG_CHECK="~ISO9660_FS"
+CONFIG_CHECK="~ATA_PIIX ~ISO9660_FS"
 
 src_install() {
 	local scripts_dir="/usr/share/one-context/scripts"
