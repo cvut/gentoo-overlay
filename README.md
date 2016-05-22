@@ -12,6 +12,7 @@ List of ebuilds
 * **app-crypt/easy-rsa** (2.2.0, 3.0.0\_rc2)
    * 2.2.0 with patch for [subjectAltName](http://www.msquared.id.au/articles/easy-rsa-subjectaltname/)
 * **app-emulation/lxc** (1.0.7)
+* **app-emulation/qemu-init-script**
 * **app-misc/alfresco-bin** (4.2.b, 4.2d)
    * with Share, GoogleDocs integration, SOLR server
 * **app-misc/alfresco-solr-bin** (4.2.b)
