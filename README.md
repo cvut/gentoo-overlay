@@ -8,7 +8,7 @@ List of ebuilds
 ---------------
 
 * **app-admin/one-context**
-* **app-backup/prebackup** (0.3.0, 0.4.0, 0.5.0)
+* **app-backup/prebackup** (0.3.0, 0.4.0, 0.5.0, 0.5.1)
 * **app-crypt/easy-rsa** (2.2.0, 3.0.0\_rc2)
    * 2.2.0 with patch for [subjectAltName](http://www.msquared.id.au/articles/easy-rsa-subjectaltname/)
 * **app-emulation/lxc** (1.0.7)
