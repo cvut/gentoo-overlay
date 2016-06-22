@@ -38,6 +38,7 @@ List of ebuilds
 * **dev-lua/luaossl** (20150727)
 * **dev-lua/lua-resty-http** (0.05, 0.06)
 * **dev-lua/ngx-oauth**
+* **dev-python/fn** (0.4.4)
 * **dev-util/activiti-bin** (5.14, 5.15.1)
 * **dev-util/sonar-bin** (3.7)
    * proper ebuild, much better than godin’s :)
