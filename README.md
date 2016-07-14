@@ -28,6 +28,7 @@ List of ebuilds
    * jdbc-mysql can’t be built on JDK 7, so there’s a binary package…
 * **dev-java/jdbc-oracle-bin** (12.1)
 * **dev-java/maven-bin** (3.2.3)
+* **dev-java/spring-boot-openrc** (0.1.0)
 * **dev-java/rhino** (1.7R4)
 * **dev-libs/opensaml** (2.4.3)
    * dependency for shibboleth-sp
