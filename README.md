@@ -58,7 +58,7 @@ List of ebuilds
    * with improved ebuild and init script
 * **sys-apps/shadow** (4.2.1)
    * with patch [884895a](https://github.com/shadow-maint/shadow/commit/884895ae25f4e684b8ca75ac03e775370f43a63d)
-* **sys-auth/ssh-ldap-pubkey** (0.2.1, 0.2.2, 0.2.3, 0.3.2, 0.4.0)
+* **sys-auth/ssh-ldap-pubkey** (0.2.3, 0.3.2, 0.4.0, 1.0.0)
    * with some fixes and enhacements
 * **www-apps/haste-client** (1.0, 1.0.1, 1.0.2)
    * [CLI Haste client](https://github.com/jirutka/haste-client) written in Python
